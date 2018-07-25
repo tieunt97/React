@@ -5,7 +5,9 @@ class TodoList extends Component {
     render() {
         return (
             <div>
-                <ItemMain />
+                <ItemMain name="Huy" />
+                <ItemMain name="Hoa" />
+                <ItemMain name="Thom" />
             </div>
         )
     }

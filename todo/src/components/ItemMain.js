@@ -4,8 +4,8 @@ class ItemMain extends Component {
     render() {
         return (
             <div className="items">
-                <div><input type="checkbox" /><label>Huy</label></div>
-                <button className="clear">x</button>
+                <div><input type="checkbox" /><label>{this.props.name}</label></div>
+                <button className="clear"></button>
             </div>
         )
     }

@@ -4,7 +4,8 @@ class FormInput extends Component {
     render() {
         return (
             <header>
-                <input type="text" placeholder="What's needs to be done?" />
+                <button><i className="arrow-down"></i></button>
+                <input type="text" placeholder="What needs to be done?" />
             </header>
         )
     }

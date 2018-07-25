@@ -24,6 +24,28 @@ h1 {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19);
 }
 
+#main > header{
+    display: flex;
+    align-items: baseline;
+    background: #fff;
+}
+
+#main > header > button {
+    margin: 0 0 0 11px;
+    background: #fff;
+}
+
+i.arrow-down {
+    height: 4px;
+    width: 4px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 4px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
 input[type="text"] {
     font-size: 24px;
     font-family: inherit;
@@ -37,9 +59,9 @@ input[type="text"] {
 }
 
 input[type="text"]::placeholder {
-    opacity: 0.2;
+    opacity: 0.3;
     font-style: italic;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 #footer {
@@ -91,10 +113,11 @@ input[type="checkbox"] {
 .clear {
     display: none;
     font-size: 20px;
-    color: #cc9a9a;
     transition: color 0.2s ease-out;
     align-self: center;
-    background: inherit;
+    width: 18px;
+    height: 18px;
+    background: url('images/delete.png') no-repeat;
 }
 
 .items:hover .clear {
@@ -102,6 +125,7 @@ input[type="checkbox"] {
 }
 
 #footer-filter > span {
+    grid-area: left;
     align-self: center;
 }
 
@@ -113,14 +137,16 @@ input[type="checkbox"] {
     text-align: center;
     border-top: 1px solid #e6e6e6;
     box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "left center center right";
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 
         0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 
             0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }
 
 #footer-filter ul {
+    grid-area: center;
     padding: 0;
     list-style: none;
     display: flex;
@@ -135,9 +161,8 @@ input[type="checkbox"] {
 }
 
 #clear-completed {
-    display: inline;
-    margin: auto 0;
-    padding: 0;
+    /* display: none; */
+    grid-area: right;
     cursor: pointer;
     background: inherit;
     color: inherit;
