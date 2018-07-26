@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 
 class FooterFilter extends Component {
     render() {
+        const {todos} = this.props;
         return (
             <footer id="footer-filter">
-                <span>1 item left</span>
+                <span>{todos.reduce((count, todo) => !todo.completed?count + 1:count, 0)} item left</span>
                 <ul>
                     <li><a href="#/">All</a></li>
                     <li><a href="#/active">Active</a></li>
