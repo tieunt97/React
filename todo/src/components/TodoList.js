@@ -4,12 +4,12 @@ import ItemMain from './ItemMain';
 class TodoList extends Component {
 
     render() {
-        const { todos, deleteTodo, changeCompleteTodo } = this.props;
-        console.log(todos);
+        const { todos, deleteTodo, changeCompleteTodo, editTodo, filterTodo } = this.props;
         return (
             <div>
                 {
-                    todos.map((todo, index) => <ItemMain key={todo.id} todo={todo} deleteTodo={deleteTodo} changeCompleteTodo={changeCompleteTodo}/>)
+                    todos.map((todo) => <ItemMain key={todo.id} todo={todo} deleteTodo={deleteTodo}
+                        changeCompleteTodo={changeCompleteTodo} editTodo={editTodo} />)
                 }
             </div>
         )

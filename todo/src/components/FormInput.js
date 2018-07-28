@@ -16,12 +16,32 @@ class FormInput extends Component {
     }
 
     render() {
-        console.log(<input />)
+        const styleCompletdAll = {
+            opacity: 1
+        }
+
+        const styleUncompleteAll = {
+            opacity: 0.5
+        }
+
+        const styleDisplay = {
+            display: 'block'
+        }
+
+        const styleDisplayNone = {
+            display: 'none'
+        }
+
+        const { lengthTodos, changeCompleteAllTodo, completedAll } = this.props;
+
         return (
             <header>
-                <button><i className="arrow-down"></i></button>
+                <button onClick={() => changeCompleteAllTodo()}
+                    style={lengthTodos>0?Object.assign({}, styleDisplay, completedAll ? styleCompletdAll : styleUncompleteAll):styleDisplayNone}>
+                    <i className="arrow-down"></i>
+                </button>
                 <input type="text" placeholder="What needs to be done?" onChange={event => this.setState({ text: event.target.value })}
-                    onKeyPress={event => this.handleAddTodo(event)} defaultValue={this.state.text} />
+                    onKeyPress={event => this.handleAddTodo(event)} value={this.state.text} />
             </header>
         )
     }

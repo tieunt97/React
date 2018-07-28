@@ -44,7 +44,7 @@ class App extends Component {
   }
 
   editTodo = (id, text) => {
-
+    this.setState(({ todos: this.state.todos.map((todo) => todo.id === id ? { id, name: text, completed: todo.completed } : todo) }))
   }
 
   deleteTodo = (id) => {
@@ -60,16 +60,37 @@ class App extends Component {
     })
     console.log(this.state.todos);
   }
-  completeAllTodo = () => {
 
+  changeCompleteAllTodo = () => {
+    let isCompleted = this.state.todos.filter(({ completed }) => completed);
+    if (isCompleted.length < this.state.todos.length) {
+      this.setState({ todos: this.state.todos.map(({ id, name }) => ({ id, name, completed: true })) });
+    } else {
+      this.setState({ todos: this.state.todos.map(({ id, name }) => ({ id, name, completed: false })) });
+    }
   }
+
+  getStateHaveCompleted = () => {
+    return {
+      completedAll: this.state.todos.every(({ completed }) => completed),
+      isCompleted: this.state.todos.filter(({ completed }) => completed).length > 0
+    };
+  }
+
+  clearCompleted = () => {
+    this.setState({ todos: this.state.todos.filter(({ completed }) => !completed) })
+  }
+
   render() {
+    const { completedAll, isCompleted } = this.getStateHaveCompleted();
     return (
       <div className="App">
         <Header />
         <section id="main">
-          <FormInput addTodo={this.addTodo} />
-          <MainSection todos={this.state.todos} deleteTodo={this.deleteTodo} changeCompleteTodo={this.changeCompleteTodo} />
+          <FormInput addTodo={this.addTodo} changeCompleteAllTodo={this.changeCompleteAllTodo}
+            completedAll={completedAll} lengthTodos={this.state.todos.length} />
+          <MainSection todos={this.state.todos} deleteTodo={this.deleteTodo} changeCompleteTodo={this.changeCompleteTodo}
+            isCompleted={isCompleted} clearCompleted={this.clearCompleted} editTodo={this.editTodo} />
         </section>
         <Footer />
       </div>
