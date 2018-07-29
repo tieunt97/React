@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 class ItemMain extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { todo: this.props.todo.name }
+    }
+
     onDoubleClick = (id) => {
         const items = document.getElementById(id);
         const [div, input] = items.childNodes;
@@ -9,22 +14,24 @@ class ItemMain extends Component {
         input.style.display = 'block';
         //set focus into input text
         input.focus();
-        input.setSelectionRange(input.value.length, input.value.length);
+        input.setSelectionRange(this.state.todo.length, this.state.todo.length);
     }
 
     handleKeyPress = (event, id) => {
         if (event.key === 'Enter') {
-            this.handleChangeTodo(event, id);
+            this.handleChangeTodo(id);
         }
     }
 
-    handleChangeTodo = (event, id) => {
-        this.props.editTodo(id, event.target.value);
+    handleChangeTodo = (id) => {
+        const name = this.state.todo.trim();
+        this.props.editTodo(id, name);
         const items = document.getElementById(id);
         const [div, input] = items.childNodes;
         items.style.padding = '12px 15px';
         div.style.display = 'grid';
         input.style.display = 'none';
+        this.setState({ todo: name });
     }
 
     render() {
@@ -52,8 +59,9 @@ class ItemMain extends Component {
                         style={completed ? styles.styleItemChecked : styles.styItemUnchecked}>{name}</label>
                     <button className="clear" onClick={() => deleteTodo(id)}></button>
                 </div>
-                <input type="text" className="edit" defaultValue={name} onKeyPress={(event) =>
-                    this.handleKeyPress(event, id)} onBlur={(event) => this.handleChangeTodo(event, id)} />
+                <input type="text" className="edit" value={this.state.todo} onChange={(event) =>
+                    this.setState({ todo: event.target.value })} onKeyPress={(event) =>
+                        this.handleKeyPress(event, id)} onBlur={() => this.handleChangeTodo(id)} />
             </div>
         )
     }

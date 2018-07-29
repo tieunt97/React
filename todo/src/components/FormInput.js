@@ -10,7 +10,7 @@ class FormInput extends Component {
 
     handleAddTodo = (event) => {
         if (event.key === 'Enter') {
-            this.props.addTodo(this.state.text);
+            this.props.addTodo(this.state.text.trim());
             this.setState({ text: '' });
         }
     }

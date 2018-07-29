@@ -8,7 +8,7 @@ import MainSection from './components/MainSection';
 class App extends Component {
   constructor(props) {
     //super: có thể sd đc this trong hàm constructor
-    //super(props): có thể sd đc 
+    //super(props): có thể sd đc this.props trong constructor
     super(props);
     this.state = {
       todos: [
@@ -32,7 +32,7 @@ class App extends Component {
   }
 
   addTodo = (text) => {
-    if (text && text.trim() !== '') {
+    if (text && text !== '') {
       const newTodo = {
         id: this.state.todos.reduce((newId, todo) => Math.max(newId, todo.id), -1) + 1,
         name: text,
