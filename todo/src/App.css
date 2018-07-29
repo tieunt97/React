@@ -127,7 +127,8 @@ input[type="checkbox"] {
 
 input.edit {
     display: none;
-    padding: 10px 16px 10px 18px;
+    padding: 9px 16px 9px 18px;
+    font-size: 20px;
 }
 
 #footer-filter > span {

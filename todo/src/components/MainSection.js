@@ -29,8 +29,10 @@ class MainSection extends Component {
         const { todos, deleteTodo, changeCompleteTodo, isCompleted, clearCompleted, editTodo } = this.props;
         return (
             <div>
-                <TodoList todos={this.getTodos(todos)} deleteTodo={deleteTodo} changeCompleteTodo={changeCompleteTodo} editTodo={editTodo} />
-                <FooterFilter todos={todos} isCompleted={isCompleted} clearCompleted={clearCompleted} filterTodo={this.filterTodo} filter={this.state.filter}/>
+                <TodoList todos={this.getTodos(todos)} deleteTodo={deleteTodo}
+                    changeCompleteTodo={changeCompleteTodo} editTodo={editTodo} />
+                <FooterFilter todos={todos} isCompleted={isCompleted} clearCompleted={clearCompleted}
+                    filterTodo={this.filterTodo} filter={this.state.filter} />
             </div>
         )
     }

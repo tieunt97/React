@@ -21,16 +21,19 @@ class FooterFilter extends Component {
         }
 
         const { todos, isCompleted, clearCompleted, filterTodo, filter } = this.props;
-        console.log(todos);
         return (
             <footer id="footer-filter" style={todos.length > 0 ? styles.styleHaveTodo : styles.styleDisplayNone}>
                 <span>{todos.reduce((count, todo) => !todo.completed ? count + 1 : count, 0)} item left</span>
                 <ul>
-                    <li><a href="#/" onClick={() => filterTodo([true, false, false])} style={filter[0]?styles.styleSelected:styles.styleUnselected}>All</a></li>
-                    <li><a href="#/active" onClick={() => filterTodo([false, true, false])} style={filter[1]?styles.styleSelected:styles.styleUnselected}>Active</a></li>
-                    <li><a href="#/completed" onClick={() => filterTodo([false, false, true])} style={filter[2]?styles.styleSelected:styles.styleUnselected}>completed</a></li>
+                    <li><a href="#/" onClick={() => filterTodo([true, false, false])}
+                        style={filter[0] ? styles.styleSelected : styles.styleUnselected}>All</a></li>
+                    <li><a href="#/active" onClick={() => filterTodo([false, true, false])}
+                        style={filter[1] ? styles.styleSelected : styles.styleUnselected}>Active</a></li>
+                    <li><a href="#/completed" onClick={() => filterTodo([false, false, true])}
+                        style={filter[2] ? styles.styleSelected : styles.styleUnselected}>completed</a></li>
                 </ul>
-                <button id="clear-completed" onClick={() => clearCompleted()} style={isCompleted ? styles.styleDisplayClearCompleted : styles.styleDisplayNone}>Clear completed</button>
+                <button id="clear-completed" onClick={() => clearCompleted()} style={isCompleted
+                    ? styles.styleDisplayClearCompleted : styles.styleDisplayNone}>Clear completed</button>
             </footer>
         )
     }

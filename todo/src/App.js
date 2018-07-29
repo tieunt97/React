@@ -44,7 +44,14 @@ class App extends Component {
   }
 
   editTodo = (id, text) => {
-    this.setState(({ todos: this.state.todos.map((todo) => todo.id === id ? { id, name: text, completed: todo.completed } : todo) }))
+    if (text !== '') {
+      this.setState(({
+        todos: this.state.todos.map((todo) => todo.id === id
+          ? { id, name: text, completed: todo.completed } : todo)
+      }));
+    } else {
+      this.setState({ todos: this.state.todos.filter((todo) => todo.id !== id) });
+    }
   }
 
   deleteTodo = (id) => {
@@ -52,13 +59,12 @@ class App extends Component {
   }
 
   changeCompleteTodo = (id) => {
-    // console.log('todos: ', this.state.todos.map((todo) => todo.id === id ? { id, name: todo.name, completed: !todo.completed } : todo));
-    const todos = this.state.todos.map((todo) => todo.id === id ? { id, name: todo.name, completed: !todo.completed } : todo)
+    const todos = this.state.todos.map((todo) => todo.id === id
+      ? { id, name: todo.name, completed: !todo.completed } : todo);
 
     this.setState({
-      todos,
+      todos
     })
-    console.log(this.state.todos);
   }
 
   changeCompleteAllTodo = () => {
@@ -89,8 +95,8 @@ class App extends Component {
         <section id="main">
           <FormInput addTodo={this.addTodo} changeCompleteAllTodo={this.changeCompleteAllTodo}
             completedAll={completedAll} lengthTodos={this.state.todos.length} />
-          <MainSection todos={this.state.todos} deleteTodo={this.deleteTodo} changeCompleteTodo={this.changeCompleteTodo}
-            isCompleted={isCompleted} clearCompleted={this.clearCompleted} editTodo={this.editTodo} />
+          <MainSection todos={this.state.todos} deleteTodo={this.deleteTodo} clearCompleted={this.clearCompleted}
+            changeCompleteTodo={this.changeCompleteTodo} isCompleted={isCompleted} editTodo={this.editTodo} />
         </section>
         <Footer />
       </div>

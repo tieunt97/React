@@ -4,7 +4,7 @@ import ItemMain from './ItemMain';
 class TodoList extends Component {
 
     render() {
-        const { todos, deleteTodo, changeCompleteTodo, editTodo, filterTodo } = this.props;
+        const { todos, deleteTodo, changeCompleteTodo, editTodo } = this.props;
         return (
             <div>
                 {
